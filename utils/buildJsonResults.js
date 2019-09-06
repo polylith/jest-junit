@@ -106,9 +106,13 @@ module.exports = function (report, appDirectory, options) {
       // Stringify the entire console object
       // Easier this way because formatting in a readable way is tough with XML
       // And this can be parsed more easily
+      let result = "";
+      for (let logMessage of suite.console) {
+        result = result + logMessage.message + "\n"
+      }
       let testSuiteConsole = {
         'system-out': {
-          _cdata: JSON.stringify(suite.console, null, 2)
+          _cdata: result
         }
       };
 
